@@ -43,3 +43,7 @@ https://github.com/Azure/azure-quickstart-templates
 Have a look around (use Ctrl + F to text search this enormous repo).
 
 You can also see the auto-generated ARM templates from existing resources in the Azure portal:
+
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/ExportTemplate.PNG)
+
+
