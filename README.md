@@ -46,4 +46,48 @@ You can also see the auto-generated ARM templates from existing resources in the
 
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/ExportTemplate.PNG)
 
+ The structure of ARm template is as such:
 
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [],
+    "functions": [],
+    "outputs": {}
+}
+```
+Let's deploy the first storage account. Use the code in most-basic-storage-account.json
+
+Validate that it will run:
+
+`az group deployment validate -g <RGNAME> --template-file PATHToYourLocalARMTemplate`
+
+If it succeeds then let's deploy it:
+
+`az group deployment create -g <RGNAME> --template-file <PATHToYourLocalARMTemplate>`
+
+Navigate to your resource group in the azure portal and wathc the deployment (click on DEPLOYMENTS under Settings)
+
+Now let's move to something a bit more complex, that uses variables and parameter:
+https://github.com/Azure/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json
+
+When a Template uses parameters you can either be prompted to provide params at deployment time or better, you have a param file in your source control and provide it at deployment:
+
+A param file is structured as such:
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountType": {
+            "value":"Standard_LRS"
+            }
+    }
+}
+```
+Deploy using a reference to the param file:
+
+`az group deployment create -g <RGNAME> --template-file <pathToYourLocalARMTemplate> --parameters @<pathToYourLocalPARAMfile>`
