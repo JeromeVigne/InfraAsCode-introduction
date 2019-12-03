@@ -44,7 +44,7 @@ Have a look around (use Ctrl + F to text search this enormous repo).
 
 You can also see the auto-generated ARM templates from existing resources in the Azure portal:
 
-![image]https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/01_Getting_Started/ExportTemplate.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/01_Getting_Started/ExportTemplate.PNG)
 
  The structure of ARm template is as such:
 
