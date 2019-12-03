@@ -1,0 +1,11 @@
+add --debug with example of bad error message
+
+add resources.azure.com
+
+add an article about the most usefull functions 
+(listkeys, variables for naming conventions allowedvalues, 
+
+read into functions
+
+devops article and sample
+
