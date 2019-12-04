@@ -7,7 +7,7 @@ I like to work with the following tool set (all of which are free and work on Wi
 - Install the Azure CLI (https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 - An Azure subscription to which you are at least a contributor
 
-### Let's get ready for the first deployment
+### Deploy your resource group
 In Vs Code open a terminal Window and log in to azure: 
 
 `az login`
@@ -19,32 +19,24 @@ Get a list of subscriptions you have access to:
 > **Make the response user friendly:** The default response format is json, you can "pipe" it to a table with `az account list --out table` or **change your default settings** (I recommend that) using: `az configure`. Only change the output format to table, the rest stays the same.
 
 Set the subscription we will work with today with:
+
 `az account set -s <SUBSCRIPTION NAME OR SUBSCRIPTION ID>`
 
 Let's create a resource group we will deploy to:
-`az group create -n RGNAME -l REGIONNAME`
-> A Resource Group (RG) is a logical container of resources. A resource always resides in an RG. A RG always resides in an Azure location, **although the resources it contains do not have to be in that same region**.  
 
-Let's get a list of regions first:
-
-`az account list-locations`
-
-Pick a region you want to work in today.
-
-`az group create -n RGNAME -l REGIONNAME`
+`az group create -n <RGNAME> -l <REGION>`
+> A Resource Group (RG) is a logical container of resources. A resource always resides in a RG. A RG always resides in an Azure region, **although the resources it contains do not have to be in that same region**. To get a list of all regions, run: `az account list-locations`
 
 **BRILLIANT!** You deployed your first Resource Group
 
-## Deploying you first ARM template
+### Basic understnading of ARM Templates
 
-Every resource in Azure is deployed using the ARM API. You can interact with the API in multiple ways! The GUI by going to portal.azure.com, PowerShell, the CLI and other SDKs...
+Every resource in Azure is deployed using the ARM API. You can interact with the API in multiple ways: The GUI by going to portal.azure.com, PowerShell, the CLI (like we just did) and **(a well kept secret)** by going to resources.azure.com (we will make use of this in more advanced chapters, but go and have a look)!
 
-Today wer will use the CLI to send json docs to the API. Does are refered to as **ARM templates**!
+Here we will use the CLI to send json docs to the API. Those are refered to as *ARM templates*.
 
-A great source for templates to get started is:
-https://github.com/Azure/azure-quickstart-templates
-
-Have a look around (use Ctrl + F to text search this enormous repo).
+**The best source for templates to get started is:
+https://github.com/Azure/azure-quickstart-template** Have a look around (use Ctrl + F to text search this enormous repo).
 
 You can also see the auto-generated ARM templates from existing resources in the Azure portal:
 
