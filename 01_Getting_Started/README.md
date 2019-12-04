@@ -1,9 +1,14 @@
-# InfraAsCode-introduction
+# Infrastructure as code - Getting started
 
-## Let's get our workbench set up!
-First, let's open Visual Studio Code and open a Terminal session.
+### My choice of tools
+I like to work with the following tool set (all of which are free and work on Win, macOS and Linux):
+- Install VS Code (https://code.visualstudio.com/)
+- Install the Azure Resource Manager (ARM) Tools extension for VSCode (https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)
+- Install the Azure CLI (https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- An Azure subscription to which you are at least a contributor
 
-Log in to azure: 
+### Let's get ready for the first deployment
+In Vs Code open a terminal Window and log in to azure: 
 
 `az login`
 
@@ -11,15 +16,15 @@ Get a list of subscriptions you have access to:
 
 `az account list`
 
-The default response format is json, you can "pipe" it to a table with `az account list --out table` or change your default settings (I recommend that): `az configure`
+> **Make the response user friendly:** The default response format is json, you can "pipe" it to a table with `az account list --out table` or **change your default settings** (I recommend that) using: `az configure`. Only change the output format to table, the rest stays the same.
 
-Set the subscription we will work with today with 
-
-`az account set -s <SUBSCRIPTION NAME OR SUBSCRIPTION ID>`
-
-You are all set to create your first resource!
-
-Let's create a resource group we will deploy to (RG is a logical container of resources. a resource always resides in an RG. An RG always resides in an Azure location, although the resources it contains do not have to be in that same region).
+Set the subscription we will work with today with:
+```shell
+az account set -s <SUBSCRIPTION NAME OR SUBSCRIPTION ID>
+```
+Let's create a resource group we will deploy to:
+`az group create -n RGNAME -l REGIONNAME`
+> A Resource Group (RG) is a logical container of resources. A resource always resides in an RG. A RG always resides in an Azure location, **although the resources it contains do not have to be in that same region**.  
 
 Let's get a list of regions first:
 
@@ -29,7 +34,7 @@ Pick a region you want to work in today.
 
 `az group create -n RGNAME -l REGIONNAME`
 
-**BRILLIANT you have your first Resource Group**
+**BRILLIANT!** You deployed your first Resource Group
 
 ## Deploying you first ARM template
 
