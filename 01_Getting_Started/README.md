@@ -19,9 +19,8 @@ Get a list of subscriptions you have access to:
 > **Make the response user friendly:** The default response format is json, you can "pipe" it to a table with `az account list --out table` or **change your default settings** (I recommend that) using: `az configure`. Only change the output format to table, the rest stays the same.
 
 Set the subscription we will work with today with:
-```shell
-az account set -s <SUBSCRIPTION NAME OR SUBSCRIPTION ID>
-```
+`az account set -s <SUBSCRIPTION NAME OR SUBSCRIPTION ID>`
+
 Let's create a resource group we will deploy to:
 `az group create -n RGNAME -l REGIONNAME`
 > A Resource Group (RG) is a logical container of resources. A resource always resides in an RG. A RG always resides in an Azure location, **although the resources it contains do not have to be in that same region**.  
