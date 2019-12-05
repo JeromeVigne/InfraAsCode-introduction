@@ -28,42 +28,41 @@ The structure of ARM template is always as such:
 For details on each element navigate to the official documentation: https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates
 
 
-## Where to start
+## 5 places to start getting templates from
 
 There are different places to get your hands on to ARM templates:
 
 ### When starting fresh:
 
-#### Export template for new resources from the portal
+#### 1. Export template for new resources from the portal
 If you create a new resource in the portal, you will always find a link to downlaod the ARM templates on the last blade before creating the resource. 
 
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Download_a_teamplate_for_Automation.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Download_a_teamplate_for_Automation.PNG){:height="1091px" width="1240px"}
 
 You will notice that the template will contain two files. The template.json file contains the resources and a list of parameter elements that match the information you were prompted for in the GUI. The parameters.json file contains the values you supplied to the according parameter elements.
 
-#### Fully documented schemas for each resource type
+#### 2. Fully documented schemas for each resource type
 This page contains the schemas for all resource tyoes organized by namespace and API version: https://docs.microsoft.com/en-us/azure/templates/
 
-#### The Azure quickstart teamplates
+#### 3. The Azure quickstart teamplates
 Another great source for templates that are ready to use is:
 https://github.com/Azure/azure-quickstart-template** Have a look around (use Ctrl + F to text search this enormous repo).
 
 
 ### Capturing existing resources
 
-#### Export template for existin resources:
+#### 4. Export template for existin resources:
 You can also export the auto-generated ARM templates from existing resources in your Azure portal:
 
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/ExportTemplate.PNG)
 
 You will notice that when exporting auto-generated temaplates, the file contains a lot of fields, most of which you have likely left as default and therefore would not need specifying in your template. However, this is very helpful when you want to start capturing resources that you have deployed and to which you might have made some setting changes. Those changes will typically show in the exported template.
 
-#### A well kept secret resources.azure.com
+#### 5. A well kept secret resources.azure.com
 
 Finally you can also interact with the ARM API through resources.azure.com. Find an indivdual resource and you will see all the fields the JSON contains for that resource. This is a great place to go to for more advanced settings that you want to pre-populate when creating your Infrastructure from CICD. But again it contains many fields that are not required.
 
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/resources_azure_com
-.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/resources_azure_com.PNG)
 
 
 
