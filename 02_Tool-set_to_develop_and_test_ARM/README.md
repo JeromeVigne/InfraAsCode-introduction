@@ -2,7 +2,7 @@
 
 There are many tools with which you can develop ARM templates. From my personal experience this is what I use to develop, test and deploy the templates really quickly. Here is an illustration of the process:
 
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Workbench.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Workbench.png)
 
 
 ## My choice of tools
