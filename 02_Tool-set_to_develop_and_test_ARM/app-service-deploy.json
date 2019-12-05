@@ -1,13 +1,17 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "App_Service_Name":{
+            "type":"string"
+        }
+    },
     "variables": {},
     "resources": [
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
-            "name": "Your-App-Service",
+            "name": "[parameters('App_Service_Name')]",
             "location": "Central US",
             "sku": {
                 "name": "Y1",

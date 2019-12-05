@@ -28,7 +28,7 @@ The structure of ARM template is always as such:
 For details on each element navigate to the official documentation: https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates
 
 
-## 5 places to start getting templates from
+## Places to get started with your templates
 
 There are different places to get your hands on to ARM templates:
 
@@ -56,14 +56,14 @@ You can also export the auto-generated ARM templates from existing resources in 
 
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/ExportTemplate.PNG)
 
-You will notice that when exporting auto-generated temaplates, the file contains a lot of fields, most of which you have likely left as default and therefore would not need specifying in your template. However, this is very helpful when you want to start capturing resources that you have deployed and to which you might have made some setting changes. Those changes will typically show in the exported template.
+>You will notice that when exporting auto-generated templates, the file contains a lot of fields, most of which you have likely left as default and therefore would not need specifying in your template. However, this is very helpful when you want to start capturing resources that you have deployed and to which you have made some setting changes (i.e. firewall settings).
 
 #### 5. A well kept secret resources.azure.com
 
-Finally you can also interact with the ARM API through resources.azure.com. Find an indivdual resource and you will see all the fields the JSON contains for that resource. This is a great place to go to for more advanced settings that you want to pre-populate when creating your Infrastructure from CICD. But again it contains many fields that are not required.
+Finally you can also interact with the ARM API through resources.azure.com. Find an indivdual resource and you will see **all the fields the schema contains for that resource type**. 
 
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/resources_azure_com.PNG)
 
-
+>resource.azure.com is a great place to go to for more advanced settings that you want to pre-populate when creating your templates. Again it shows all the fields available for the schema of the resource type - most of these are not required for your templates to deploy succesfully.
 
  
