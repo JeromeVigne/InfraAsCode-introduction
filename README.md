@@ -7,5 +7,5 @@
  It contains multiple chapters that get more and more advanced:
  - 01 An introduction to ARM
  - 02 Here we will set up all the tools we need for our first deployment
- - 03_work_in_progress (will be cool functions and tips)
- - 04 Here we will create a build and release pipeline in DevOps.
+ - 03 Here we will create a build and release pipeline in DevOps.
+ - 04 more to come!

@@ -2,7 +2,7 @@
 
 Now that you have invested time in making sure all your deployments are defined with immutable and declarative artifacts, you need to think about a strategy to automate the deployment of the aforementioned artifacts.
 
-There are many tools for Continuous Integration (CI) and Continuous Deployment (CD), if you have started going the ARM route because you are targeting Azure, it is a natural fir to use Azure DevOps for CI and CD.
+There are many tools for Continuous Integration (CI) and Continuous Deployment (CD), if you have started going the ARM route because you are targeting Azure, it is a natural fit to use Azure DevOps for CI and CD.
 
 In this tutorial we will focus on the CD part with Azure pipelines in Azure DevOps.
 
@@ -11,21 +11,21 @@ In this tutorial we will focus on the CD part with Azure pipelines in Azure DevO
 If you already have an organization in Azure DevOps, just create a new project, otherwise navigate to dev.azure.com and create an organization. Then create your first DevOps project. Once your project is created you will have access to the boards, the repository, pipelines and many more features of DevOps.
 
 For this exercise we will focus on using the repo and the pipelines. 
-> Keep in mind that Az DevOps is very open and although it can provide you with all the capabilities for a thorough DevOps end-to-end platform (PM tooling for sprint planning, bugs and work items tracing, project wiki, git repos, pipelines, test artifacts and thorough reporting...), you can use one or more of these features and mix it with the tools you already use or have grown to like (i.e. Jira, Octopus, Jenkins...).
+> Keep in mind that Az DevOps is very open and although it can provide you with all the capabilities for a thorough DevOps end-to-end platform (PM tooling for sprint planning, bugs and work items tracking, project wiki, git repos, pipelines, test artifacts and thorough reporting...), you can use one or more of these features and mix it with the tools you already use or have grown to like (i.e. Jira, Octopus, Jenkins...).
 
 Navigate to the repository section:
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Empty_Repo.PNG)
 
 ### Working with Git
 
-Here are the commands to start with git, you can also use a UI git tool if you prefer ot the integrated source control experience in VSCode.
+Here are the commands to start with git, you can also use a UI git tool if you prefer or the integrated source control experience in VSCode.
 
 Copy the URL to clone the repository to your computer.
 
 Navigate to an empty folder on your machine and open the empty folder in VSCode, open a terminal session and run
 `git init`, `git clone <YOUR REPO URL>`. You should receive a warning that you are cloning an empty repo.
 
-Now create a file in that empty local folder and save it. IN the command cd into the file that the git clone has created. Run `git add .`, this will stage all your files in the folder for the commit. You can specify a specific file instead with `git add <YOUR FILE NAME>`. Finally run `git commit -m <YOUR COMMIT MESSAGE>` and `git push`.
+Now create a file in that empty local folder and save it. In the command cd into the file that the git clone has created. Run `git add .`, this will stage all your files in the folder for the commit. You can specify a specific file instead with `git add <YOUR FILE NAME>`. Finally run `git commit -m <YOUR COMMIT MESSAGE>` and `git push`.
 
 The whole thing should look like this:
 
@@ -58,7 +58,9 @@ The yaml file contains the trigger (i.e. when a change occurs on Master branch),
 
 Remove everything under steps and place your curser underneath. Now click **Show Assistant**. This assistant is awesome and will generate the YAML you need from a GUI guiding you.
 
-Search for "publish build artifacts", you can use the default settings for now and click add. Note that the Path to publish is a variable! In fact $(Build.ArtifactStagingDirectory)is a very powerful variable: The local path on the agent where any artifacts are copied to before being pushed to their destination. To learn more about predefined pipeline variables and how to use them follow this [LINK](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml).
+Search for "publish build artifacts", you can use the default settings for now and click add. 
+
+>Note that the "Path to publish" is a variable! In fact $(Build.ArtifactStagingDirectory)is a very powerful variable: The local path on the agent where any artifacts are copied to before being pushed to their destination. To learn more about predefined pipeline variables and how to use them follow this [LINK](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml).
 
 So if this will publish the artifacts from $(Build.ArtifactStagingDirectory) we need to make sure we copied the files we wanted into that location in the previous pipeline step. Place your curser above the PublishBuildArtifacts taks and search for copy files. If you leave the Source folder empty it will be at the root of your repo (which is what we want for now). For the target folder paste $(Build.ArtifactStagingDirectory).
 
@@ -91,7 +93,7 @@ steps:
 
 Hit Save and run!
 
-**AWESOME YOU JUST RAN A BUILD PIPELINE** Now every time you push a change to your master branch it will trigger the build pipeline and publish the latest artifact.
+**AWESOME YOU JUST RAN A BUILD PIPELINE!** Now every time you push a change to your master branch it will trigger the build pipeline and publish the latest artifact.
 
 #### 2. The release pipeline
 
@@ -104,13 +106,13 @@ Now click on Stage 1 where it says 0 tasks. In Stage 1 you have an empty agent j
 
 ![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Release_Pipeline_ARM.PNG)
 
-Under Resource Manager connection, select manage connection > create a Resource Manager Connection. You do need to be able to register applications in your AAD to do this step. If you are not able to do this, you might have to work with someone who can (typically an admin). Select your subscription and give it a name. You can restrict the connection to a specific resource group if you want. But beware that then this connection can only see and alter the specific resource group.
+Under Resource Manager connection, select manage connection > create a Resource Manager Connection. You do need to be able to register applications in your AAD to do this step. If you are not able to do this, you might have to work with someone who can (typically an admin). Select your subscription and give it a name. You can restrict the connection to a specific resource group if you want. But beware that if you do so, this connection can only see and alter the specific resource group.
 
-Once done, return to you pipeline. Select the connection, subscription, a resource group and a location. For Template, select the ellipsis and pick your template json file, for the parameters, pick you parameters file. 
+Once you are done, return to your pipeline. Select the connection, subscription, a resource group and a location. For Template, select the ellipsis and pick your template json file from th epublished artifact, for the parameters, pick you parameters file. 
 
 Save and create the release.
 
-**WELL DONE, YOU NOW HAVE CREATED A TEMPLATE< PUSHED IT TO A SHARED REPO, TRIGGERED A BUILD AND A RELEASE**
+**WELL DONE, YOU NOW HAVE CREATED A TEMPLATE, PUSHED IT TO A SHARED REPO, TRIGGERED A BUILD AND A RELEASE**
 
 The above is all you need for end-to-end DevOps. With this skeleton you can build more and more!
 
