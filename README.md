@@ -5,5 +5,7 @@
  It is built in different modules that will lead you from your very first resource created as *Infrastructure as Code* to having a production grade *multi-stage CICD pipeline with secret stores and variables*
 
  This repo contains multiple chapters that get more and more advanced:
- - 01_Getting_Started will guide you through the tooling needed and help deploy the first ARM template
- - 02_tbd will something something
+ - 01 An introduction to ARM
+ - 02 Here we will set up all the tools we need for our first deployment
+ - 03_work_in_progress (will be cool functions and tipps)
+ - 04 Here we will build a build and release pipeline in DevOps.
