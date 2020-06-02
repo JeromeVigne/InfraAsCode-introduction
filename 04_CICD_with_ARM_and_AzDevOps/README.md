@@ -37,5 +37,84 @@ The above is the manual way (which I will argue is really important to understan
 
 As you see, you can hover over changes, stage them, add a message, commit and push all.
 
+For this excercise let's push the working arm template for a storage account from chapter 2 and the parameter file from chapter 2 to your repo. Simply add the files to you rlocal folder, stage them, commit them and push them!
+
 ### On to the pipelines
+
+Alright, we now have in our repo a working deployment file and a working parameter file. Let's build the pipelines that will continously deploy these to Azure.
+
+Here we have multiple ways to do it. For the sake of this excersice we will use a build pipeline and a release pipeline. In some cases for infra as code you could get away with just using the release pipeline.
+
+#### 1. The build pipeline
+
+Navigate to Pipelines (little rocket icon) and create your first pipeline. You should be here:
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+
+> Here you can see how open AzDevOps is, we will let you trigger the pipeline form all repositories that support git.
+
+Let's select Azure Repos, select the repo and create a starter pipeline. This will crate a yaml file that descirbes what your build pipeline will do.
+
+The yaml file contains the trigger (i.e. when a change occurs on Master branch), and the pool on which it will run (i.e. Ubuntu host that will be spun up for you when needed and removed afterwards).
+
+Remove everything under steps and place your curser underneath. Now click **Show Assistant**. THis assistant is awesome and will generate the YAML you need from a GUI guiding you.
+
+Search for "publish build artifacts", you can use the default settings for now and click add. Note that the Path to publish is a variable! In fact $(Build.ArtifactStagingDirectory)is a very powerful variable: The local path on the agent where any artifacts are copied to before being pushed to their destination. To learn more about predefined pipeline variables and how to use them follow this [LINK](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml).
+
+So if this will publish the artifacts from $(Build.ArtifactStagingDirectory) we need to make sure we copied the files we wanted into that location in teh previous pipeline step. Place your curser above the PublishBuildArtifacts taks and search for copy files. If you leave the Source folder empty it will be at the root of your repo (which is what we want for now). For the target folder paste $(Build.ArtifactStagingDirectory).
+
+The pipeline should look like this:
+
+```yaml
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: CopyFiles@2
+  inputs:
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+```
+
+Hit Save and run!
+
+**AWESOME YOU JUST RAN A BUILD PIPELINE** Now everytime you push a change to your master branch it will trigger the build pipeline and publish the latest artifact.
+
+#### 2. The release pipeline
+
+Navigate to pipelines > releases. New pipeline, empty job. In the artifacts section, click the "Add an artifact". Select your source, there should only be one.
+
+If you want continuous deployment (deploy to Azure everytime a new build is availabel) > click on the little thunder symbol at the top right corner of your artifact and select Enabled:
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+
+Now click on Stage 1 where it says 0 tasks. In Stage 1 you have an empty agent job. The agent is the box that will execute the pipeline for us. Add an agent job and look for "ARM template deployment". Add it to your pipeline.
+
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+
+Under Resource Manager connection, select manage connection > create a Resource Manager Connection. You do need to be able to register appliactions in your AAD to do this step. If you are not able to do this, you might have to work with someone who can (typically an admin). Select your subscription and give it a name. You can restrict the connection to a specific resource group if you want. But beware that then this connection can only see and alter the specific resource group.
+
+Once done, return to you pipeline. Select the connection, subscription, a resource group and a location. For Template, select the ellipsis and pick your template json file, for the parameters, pick you parameters file. 
+
+Save and create the release.
+
+**WELL DONE, YOU NOW HAVE CREATED A TEMPLATE< PUSHED IT TO A SHARED REPO, TRIGGERED A BUILD AND A RELEASE**
+
+The above is all you need for end-to-end DevOps. WIth this skeleton you can build more and more!
+
+
+
+
 
