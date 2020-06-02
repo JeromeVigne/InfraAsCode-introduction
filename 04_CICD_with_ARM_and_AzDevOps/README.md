@@ -48,7 +48,7 @@ Here we have multiple ways to do it. For the sake of this excersice we will use 
 #### 1. The build pipeline
 
 Navigate to Pipelines (little rocket icon) and create your first pipeline. You should be here:
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/pipelines-initiate.PNG)
 
 > Here you can see how open AzDevOps is, we will let you trigger the pipeline form all repositories that support git.
 
@@ -98,11 +98,11 @@ Hit Save and run!
 Navigate to pipelines > releases. New pipeline, empty job. In the artifacts section, click the "Add an artifact". Select your source, there should only be one.
 
 If you want continuous deployment (deploy to Azure everytime a new build is availabel) > click on the little thunder symbol at the top right corner of your artifact and select Enabled:
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Release_Pipeline_Start.PNG)
 
 Now click on Stage 1 where it says 0 tasks. In Stage 1 you have an empty agent job. The agent is the box that will execute the pipeline for us. Add an agent job and look for "ARM template deployment". Add it to your pipeline.
 
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Release_Pipeline_ARM.PNG)
 
 Under Resource Manager connection, select manage connection > create a Resource Manager Connection. You do need to be able to register appliactions in your AAD to do this step. If you are not able to do this, you might have to work with someone who can (typically an admin). Select your subscription and give it a name. You can restrict the connection to a specific resource group if you want. But beware that then this connection can only see and alter the specific resource group.
 
