@@ -9,6 +9,7 @@ There are many tools with which you can develop ARM templates. From my personal 
 I like to work with the following tool set (all of which are free and work on Win, macOS and Linux):
 - [VS Code](https://code.visualstudio.com/)
 - [The Azure Resource Manager (ARM) Tools extension for VSCode](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)
+- [The Azure Account extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
 - [The Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 - An [Azure subscription](https://azure.microsoft.com/en-us/free/) to which you are at least a *contributor* for testing the deployments
 - An [Azure DevOps](https://dev.azure.com) project that I will use for my repository and for the deployment pipelines
@@ -39,7 +40,7 @@ Let's create a resource group we will deploy to:
 
 ### Deploy the first resource
 
-Let's deploy a dynamic App Service Plan - you will encur no costs. Use the code in app-service-deploy.json. You can copy paste it from GitHUb into a new file you create in the local folder you are in. Make sure you click on raw option when viewing the file in GitHub.
+Let's deploy a dynamic App Service Plan - you will encur no costs. Use the code in app-service-deploy.json. You can copy paste it from GitHub into a new file you create in the local folder you are in. Make sure you click on raw option when viewing the file in GitHub.
 
 After you save the file locally, validate that it will run:
 
@@ -84,5 +85,5 @@ Deploy using a remote template with a local the parameter file:
 
 `az group deployment create -g <RGNAME> --template-uri <TemplateURL> --parameters @<ParameterFilePath>`
 
-> You can mix and match having local temaplte and parameters, having both remotely or a mix of them. You can also reference a parameter file and over-write some parameter values by specifying them in the command: `az group deployment create -g <RGNAME> --template-uri <TemplateURL> --parameters @<ParameterFilePath> --parameters MyParameter=paramvalue`
+> You can mix and match having local template and parameters, having both remotely or a mix of them. You can also reference a parameter file and over-write some parameter values by specifying them in the command: `az group deployment create -g <RGNAME> --template-uri <TemplateURL> --parameters @<ParameterFilePath> --parameters MyParameter=paramvalue`
 
