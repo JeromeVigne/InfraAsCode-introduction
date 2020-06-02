@@ -14,7 +14,7 @@ For this excersice we will focus on using the repo and the pipelines.
 > Keep in mind that Az DevOps is very open and although it can provide you with all the capabilities for a thorough DevOps end-to-end platform (PM tooling for sprint planning, bugs and work items tracing, project wiki, git repos, pipelines, test artifacts and thorough reporting...), you can use one or more of these features and mix it with the tools you already use or have grown to like (i.e. Jira, Octopus, Jenkins...).
 
 Navigate to the repository section:
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Empty_Repo.PNG){:height="1091px" width="1240px"}
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/Empty_Repo.PNG)
 
 ### Working with Git
 
@@ -28,10 +28,12 @@ Navigate to an empty folder on your machine and open the empty folder in VSCode,
 Now create a file in that empty local folder and save it. IN the command cd into the file that the git clone has created. Run `git add .`, this will stage all your files in the folder for the commit. You can specify a specific file instead with `git add <YOUR FILE NAME>`. Finally run `git commit -m <YOUR COMMIT MESSAGE>` and `git push`.
 
 The whole thing should look like this:
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/VSCode-gitinit-screen.PNG){:height="1091px" width="1240px"}
+
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/VSCode-gitinit-screen.PNG)
 
 The above is the manual way (which I will argue is really important to understand). VSCode has also a gui for this. ONce you have run `git init` and `git clone <YOUR REPO URL>`, you can switch and start using the guid:
-![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG.PNG){:height="1091px" width="1240px"}
+
+![image](https://github.com/JeromeVigne/InfraAsCode-introduction/blob/master/images/git-gui.PNG)
 
 As you see, you can hover over changes, stage them, add a message, commit and push all.
 
